@@ -4,7 +4,7 @@
   "meetups": "2026-09-01",
   "events": "2026-09-01",
   "pipelineCounts": "2026-09-01",
-  "pipelineDetail": "2026-08-26"
+  "pipelineDetail": "2026-09-01"
  },
  "meetups": {
   "asOf": "2026-09-01",
@@ -25272,6 +25272,54 @@
   "testCount": 2,
   "records": [
    {
+    "id": 15960797,
+    "slug": "wcpt-needs-vetting",
+    "stage": "Needs Vetting",
+    "title": "WordPress Campus Connect Titu Maiorescu University",
+    "start": "2026-10-14",
+    "location": "Bucharest, Romania",
+    "organizer": "Alex Spataru",
+    "anticipated": "20",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15960797",
+    "format": "Campus Connect",
+    "country": "Romania",
+    "us": false,
+    "modified": "2026-09-01",
+    "test": false
+   },
+   {
+    "id": 15950613,
+    "slug": "wcpt-needs-vetting",
+    "stage": "Needs Vetting",
+    "title": "WordPress Campus Connect 1227507",
+    "start": "2026-08-31",
+    "location": "Addis Ababa, Ethiopia",
+    "organizer": "Abas hussen Enderis",
+    "anticipated": "260759477",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15950613",
+    "format": "Campus Connect",
+    "country": "Ethiopia",
+    "us": false,
+    "modified": "2026-08-31",
+    "test": false
+   },
+   {
+    "id": 15922400,
+    "slug": "wcpt-needs-vetting",
+    "stage": "Needs Vetting",
+    "title": "WordPress Developers Day Texas 2026",
+    "start": null,
+    "location": "Houston, Texas",
+    "organizer": "Stevica Golosin",
+    "anticipated": "150",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15922400",
+    "format": "Other",
+    "country": "Texas",
+    "us": false,
+    "modified": "2026-08-29",
+    "test": false
+   },
+   {
     "id": 15774488,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
@@ -25301,6 +25349,22 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
+    "test": false
+   },
+   {
+    "id": 15897861,
+    "slug": "wcpt-needs-orientati",
+    "stage": "Needs Orientation/Interview",
+    "title": "WordPress Campus Connect Oriental College of Technology, Bhopal",
+    "start": null,
+    "location": "",
+    "organizer": "",
+    "anticipated": "",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15897861",
+    "format": "Campus Connect",
+    "country": "",
+    "us": false,
+    "modified": "2026-08-30",
     "test": false
    },
    {
@@ -25397,22 +25461,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
-    "test": false
-   },
-   {
-    "id": 15703614,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordCamp Vienna 2027",
-    "start": "2027-04-02",
-    "location": "Vienna, Austria",
-    "organizer": "Dominik Liss",
-    "anticipated": "300",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15703614",
-    "format": "WordCamp",
-    "country": "Austria",
-    "us": false,
-    "modified": "2026-08-11",
     "test": false
    },
    {
@@ -25605,6 +25653,22 @@
     "country": "India",
     "us": false,
     "modified": "2026-01-19",
+    "test": false
+   },
+   {
+    "id": 15939970,
+    "slug": "wcpt-more-info-reque",
+    "stage": "On Hold (more info)",
+    "title": "WordPress Campus Connect Shri Vaishnav Vidyapeeth Vishwavidyalya",
+    "start": "2026-09-25",
+    "location": "Indore, INDIA",
+    "organizer": "Sanskrati Shukla",
+    "anticipated": "150",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15939970",
+    "format": "Campus Connect",
+    "country": "INDIA",
+    "us": false,
+    "modified": "2026-08-31",
     "test": false
    },
    {
@@ -25912,6 +25976,22 @@
     "test": false
    },
    {
+    "id": 15914068,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordPress Campus Connect Colegio San Agustin, Bacolod",
+    "start": "2026-10-30",
+    "location": "Bacolod, Philippines",
+    "organizer": "Sunny Rey Bucayani",
+    "anticipated": "30",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15914068",
+    "format": "Campus Connect",
+    "country": "Philippines",
+    "us": false,
+    "modified": "2026-08-30",
+    "test": false
+   },
+   {
     "id": 15814531,
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
@@ -25972,7 +26052,7 @@
     "format": "Campus Connect",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-08-11",
+    "modified": "2026-08-26",
     "test": false
    },
    {
@@ -25989,22 +26069,6 @@
     "country": "Uganda",
     "us": false,
     "modified": "2026-08-09",
-    "test": false
-   },
-   {
-    "id": 15592082,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Campus Connect Universidad de A Coruña",
-    "start": "2026-09-30",
-    "location": "A Coruña, Spain",
-    "organizer": "Carla Pumutxa",
-    "anticipated": "45",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15592082",
-    "format": "Campus Connect",
-    "country": "Spain",
-    "us": false,
-    "modified": "2026-08-25",
     "test": false
    },
    {
@@ -26232,38 +26296,6 @@
     "test": false
    },
    {
-    "id": 13607491,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Campus Connect Sukkur IBA University",
-    "start": "2026-09-07",
-    "location": "Sukkur, Pakistan",
-    "organizer": "Jamshed Ali",
-    "anticipated": "100",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=13607491",
-    "format": "Campus Connect",
-    "country": "Pakistan",
-    "us": false,
-    "modified": "2026-08-25",
-    "test": false
-   },
-   {
-    "id": 13392262,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Youth Day Nicarargua 2026",
-    "start": null,
-    "location": "Managua Nicaragua",
-    "organizer": "valeria pilarte",
-    "anticipated": "",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=13392262",
-    "format": "Other",
-    "country": "Managua Nicaragua",
-    "us": false,
-    "modified": "2026-08-25",
-    "test": false
-   },
-   {
     "id": 11993481,
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
@@ -26309,6 +26341,22 @@
     "country": "Uganda",
     "us": false,
     "modified": "2025-10-13",
+    "test": false
+   },
+   {
+    "id": 15703614,
+    "slug": "wcpt-pre-planning",
+    "stage": "In Pre-Planning",
+    "title": "WordCamp Vienna 2027",
+    "start": "2027-04-02",
+    "location": "Vienna, Austria",
+    "organizer": "Dominik Liss",
+    "anticipated": "300",
+    "link": "https://central.wordcamp.org/wordcamps/wordcamp-vienna-2027/",
+    "format": "WordCamp",
+    "country": "Austria",
+    "us": false,
+    "modified": "2026-08-27",
     "test": false
    },
    {
@@ -26405,22 +26453,6 @@
     "country": "Italy",
     "us": false,
     "modified": "2026-06-23",
-    "test": false
-   },
-   {
-    "id": 14598162,
-    "slug": "wcpt-pre-planning",
-    "stage": "In Pre-Planning",
-    "title": "WordCamp Islamabad 2026",
-    "start": null,
-    "location": "Islamabad, Pakistan",
-    "organizer": "Muhammad Kashif",
-    "anticipated": "220",
-    "link": "https://central.wordcamp.org/wordcamps/wordcamp-islamabad-2026/",
-    "format": "WordCamp",
-    "country": "Pakistan",
-    "us": false,
-    "modified": "2026-07-30",
     "test": false
    },
    {
@@ -26664,6 +26696,22 @@
     "test": false
    },
    {
+    "id": 14598162,
+    "slug": "wcpt-needs-budget-re",
+    "stage": "Needs Budget Review",
+    "title": "WordCamp Islamabad 2026",
+    "start": null,
+    "location": "Islamabad, Pakistan",
+    "organizer": "Muhammad Kashif",
+    "anticipated": "220",
+    "link": "https://central.wordcamp.org/wordcamps/wordcamp-islamabad-2026/",
+    "format": "WordCamp",
+    "country": "Pakistan",
+    "us": false,
+    "modified": "2026-08-27",
+    "test": false
+   },
+   {
     "id": 15001685,
     "slug": "wcpt-budget-rev-sche",
     "stage": "Budget Review Scheduled",
@@ -26676,7 +26724,7 @@
     "format": "WordCamp",
     "country": "Guatemala",
     "us": false,
-    "modified": "2026-08-24",
+    "modified": "2026-08-26",
     "test": false
    },
    {
@@ -26724,7 +26772,7 @@
     "format": "WordCamp",
     "country": "Uganda",
     "us": false,
-    "modified": "2026-08-25",
+    "modified": "2026-08-26",
     "test": false
    },
    {
@@ -26762,7 +26810,7 @@
   ],
   "momentum": {
    "2026-01": {
-    "newApps": 24,
+    "newApps": 23,
     "confirmed": 15,
     "closed": 10,
     "cancelled": 3,
@@ -26784,41 +26832,48 @@
    },
    "2026-04": {
     "newApps": 26,
-    "confirmed": 9,
+    "confirmed": 8,
     "closed": 12,
     "cancelled": 6,
     "declined": 3
    },
    "2026-05": {
     "newApps": 26,
-    "confirmed": 14,
+    "confirmed": 13,
     "closed": 13,
     "cancelled": 3,
     "declined": 2
    },
    "2026-06": {
     "newApps": 23,
-    "confirmed": 37,
+    "confirmed": 36,
     "closed": 4,
     "cancelled": 5,
     "declined": 1
    },
    "2026-07": {
     "newApps": 21,
-    "confirmed": 26,
+    "confirmed": 22,
     "closed": 7,
     "cancelled": 2,
     "declined": 3
    },
    "2026-08": {
-    "newApps": 19,
-    "confirmed": 20,
-    "closed": 9,
+    "newApps": 25,
+    "confirmed": 28,
+    "closed": 13,
     "cancelled": 14,
-    "declined": 3
+    "declined": 4
+   },
+   "2026-09": {
+    "newApps": 1,
+    "confirmed": 1,
+    "closed": 0,
+    "cancelled": 0,
+    "declined": 0
    }
   },
-  "detailAsOf": "2026-08-26",
+  "detailAsOf": "2026-09-01",
   "funnelCounts": {
    "Needs Vetting": 4,
    "Needs Orientation/Interview": 20,
