@@ -4,7 +4,7 @@
   "meetups": "2026-09-02",
   "events": "2026-09-02",
   "pipelineCounts": "2026-09-02",
-  "pipelineDetail": "2026-09-01"
+  "pipelineDetail": "2026-09-02"
  },
  "meetups": {
   "asOf": "2026-09-02",
@@ -25316,38 +25316,6 @@
   "testCount": 2,
   "records": [
    {
-    "id": 15960797,
-    "slug": "wcpt-needs-vetting",
-    "stage": "Needs Vetting",
-    "title": "WordPress Campus Connect Titu Maiorescu University",
-    "start": "2026-10-14",
-    "location": "Bucharest, Romania",
-    "organizer": "Alex Spataru",
-    "anticipated": "20",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15960797",
-    "format": "Campus Connect",
-    "country": "Romania",
-    "us": false,
-    "modified": "2026-09-01",
-    "test": false
-   },
-   {
-    "id": 15950613,
-    "slug": "wcpt-needs-vetting",
-    "stage": "Needs Vetting",
-    "title": "WordPress Campus Connect 1227507",
-    "start": "2026-08-31",
-    "location": "Addis Ababa, Ethiopia",
-    "organizer": "Abas hussen Enderis",
-    "anticipated": "260759477",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15950613",
-    "format": "Campus Connect",
-    "country": "Ethiopia",
-    "us": false,
-    "modified": "2026-08-31",
-    "test": false
-   },
-   {
     "id": 15922400,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
@@ -25396,6 +25364,22 @@
     "test": false
    },
    {
+    "id": 15960797,
+    "slug": "wcpt-needs-orientati",
+    "stage": "Needs Orientation/Interview",
+    "title": "WordPress Campus Connect Titu Maiorescu University, Bucharest",
+    "start": "2026-10-14",
+    "location": "Bucharest, Romania",
+    "organizer": "Alex Spataru",
+    "anticipated": "20",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15960797",
+    "format": "Campus Connect",
+    "country": "Romania",
+    "us": false,
+    "modified": "2026-09-01",
+    "test": false
+   },
+   {
     "id": 15897861,
     "slug": "wcpt-needs-orientati",
     "stage": "Needs Orientation/Interview",
@@ -25409,22 +25393,6 @@
     "country": "",
     "us": false,
     "modified": "2026-08-30",
-    "test": false
-   },
-   {
-    "id": 15869620,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordCamp Manchester 2026",
-    "start": null,
-    "location": "Manchester, UK",
-    "organizer": "Rhys Wynne",
-    "anticipated": "70",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15869620",
-    "format": "WordCamp",
-    "country": "UK",
-    "us": false,
-    "modified": "2026-08-24",
     "test": false
    },
    {
@@ -25444,22 +25412,6 @@
     "test": false
    },
    {
-    "id": 15790931,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordCamp Kolkata, West Bengal, India",
-    "start": null,
-    "location": "Kolkata, West Bengal, India",
-    "organizer": "Ritika Roy",
-    "anticipated": "400",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15790931",
-    "format": "WordCamp",
-    "country": "India",
-    "us": false,
-    "modified": "2026-08-19",
-    "test": false
-   },
-   {
     "id": 15751119,
     "slug": "wcpt-needs-orientati",
     "stage": "Needs Orientation/Interview",
@@ -25473,22 +25425,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-24",
-    "test": false
-   },
-   {
-    "id": 15740470,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "The WordPress in Education Summit Kaliro, Uganda",
-    "start": null,
-    "location": "Kaliro, Uganda",
-    "organizer": "Kenneth Kipyeko",
-    "anticipated": "",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15740470",
-    "format": "Other",
-    "country": "Uganda",
-    "us": false,
-    "modified": "2026-08-19",
     "test": false
    },
    {
@@ -25985,6 +25921,54 @@
     "country": "Saint Petersburg",
     "us": false,
     "modified": "2025-04-21",
+    "test": false
+   },
+   {
+    "id": 15869620,
+    "slug": "wcpt-interview-sched",
+    "stage": "Interview Scheduled",
+    "title": "WordCamp Manchester 2026",
+    "start": null,
+    "location": "Manchester, UK",
+    "organizer": "Rhys Wynne",
+    "anticipated": "70",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15869620",
+    "format": "WordCamp",
+    "country": "UK",
+    "us": false,
+    "modified": "2026-09-02",
+    "test": false
+   },
+   {
+    "id": 15790931,
+    "slug": "wcpt-interview-sched",
+    "stage": "Interview Scheduled",
+    "title": "WordCamp Kolkata, West Bengal, India",
+    "start": null,
+    "location": "Kolkata, West Bengal, India",
+    "organizer": "Ritika Roy",
+    "anticipated": "400",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15790931",
+    "format": "WordCamp",
+    "country": "India",
+    "us": false,
+    "modified": "2026-09-02",
+    "test": false
+   },
+   {
+    "id": 15740470,
+    "slug": "wcpt-interview-sched",
+    "stage": "Interview Scheduled",
+    "title": "The WordPress in Education Summit Kaliro, Uganda",
+    "start": null,
+    "location": "Kaliro, Uganda",
+    "organizer": "Kenneth Kipyeko",
+    "anticipated": "",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15740470",
+    "format": "Other",
+    "country": "Uganda",
+    "us": false,
+    "modified": "2026-09-02",
     "test": false
    },
    {
@@ -26744,7 +26728,7 @@
     "slug": "wcpt-needs-budget-re",
     "stage": "Needs Budget Review",
     "title": "WordCamp Islamabad 2026",
-    "start": null,
+    "start": "2026-10-24",
     "location": "Islamabad, Pakistan",
     "organizer": "Muhammad Kashif",
     "anticipated": "220",
@@ -26752,7 +26736,7 @@
     "format": "WordCamp",
     "country": "Pakistan",
     "us": false,
-    "modified": "2026-08-27",
+    "modified": "2026-09-02",
     "test": false
    },
    {
@@ -26789,18 +26773,18 @@
    },
    {
     "id": 14274426,
-    "slug": "wcpt-budget-rev-sche",
-    "stage": "Budget Review Scheduled",
+    "slug": "wcpt-needs-contract",
+    "stage": "Needs Contract",
     "title": "WordCamp Mumbai 2027",
     "start": null,
     "location": "Mumbai, Maharashtra, India",
     "organizer": "Arundhati Kane",
-    "anticipated": "400",
+    "anticipated": "425",
     "link": "https://central.wordcamp.org/wordcamps/wordcamp-mumbai-2027/",
     "format": "WordCamp",
     "country": "India",
     "us": false,
-    "modified": "2026-08-24",
+    "modified": "2026-09-01",
     "test": false
    },
    {
@@ -26904,20 +26888,20 @@
    },
    "2026-08": {
     "newApps": 25,
-    "confirmed": 28,
+    "confirmed": 27,
     "closed": 13,
     "cancelled": 14,
     "declined": 4
    },
    "2026-09": {
     "newApps": 1,
-    "confirmed": 1,
+    "confirmed": 2,
     "closed": 0,
     "cancelled": 0,
-    "declined": 0
+    "declined": 1
    }
   },
-  "detailAsOf": "2026-09-01",
+  "detailAsOf": "2026-09-02",
   "funnelCounts": {
    "Needs Vetting": 3,
    "Needs Orientation/Interview": 21,
