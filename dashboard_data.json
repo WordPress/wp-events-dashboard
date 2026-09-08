@@ -4,7 +4,7 @@
   "meetups": "2026-09-08",
   "events": "2026-09-08",
   "pipelineCounts": "2026-09-08",
-  "pipelineDetail": "2026-09-04"
+  "pipelineDetail": "2026-09-08"
  },
  "meetups": {
   "asOf": "2026-09-08",
@@ -25588,22 +25588,6 @@
   "testCount": 2,
   "records": [
    {
-    "id": 15989978,
-    "slug": "wcpt-needs-vetting",
-    "stage": "Needs Vetting",
-    "title": "WordPress Campus Connect Trasa Coworking Space (Trackingspace)",
-    "start": "2026-10-25",
-    "location": "Tegal, Indonesia",
-    "organizer": "Joko Prabowo",
-    "anticipated": "30",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15989978",
-    "format": "Campus Connect",
-    "country": "Indonesia",
-    "us": false,
-    "modified": "2026-09-03",
-    "test": false
-   },
-   {
     "id": 15774488,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
@@ -25636,6 +25620,22 @@
     "test": false
    },
    {
+    "id": 15989978,
+    "slug": "wcpt-needs-orientati",
+    "stage": "Needs Orientation/Interview",
+    "title": "WordPress Campus Connect Trasa CoWorking Space, Tegal",
+    "start": "2026-10-25",
+    "location": "Tegal, Indonesia",
+    "organizer": "Joko Prabowo",
+    "anticipated": "30",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15989978",
+    "format": "Campus Connect",
+    "country": "Indonesia",
+    "us": false,
+    "modified": "2026-09-08",
+    "test": false
+   },
+   {
     "id": 15960797,
     "slug": "wcpt-needs-orientati",
     "stage": "Needs Orientation/Interview",
@@ -25665,38 +25665,6 @@
     "country": "Texas",
     "us": false,
     "modified": "2026-09-03",
-    "test": false
-   },
-   {
-    "id": 15897861,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordPress Campus Connect Oriental College of Technology, Bhopal",
-    "start": null,
-    "location": "",
-    "organizer": "",
-    "anticipated": "",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15897861",
-    "format": "Campus Connect",
-    "country": "",
-    "us": false,
-    "modified": "2026-08-30",
-    "test": false
-   },
-   {
-    "id": 15821491,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordPress Campus Connect SMKN 1 Dukuhturi",
-    "start": "2026-10-01",
-    "location": "Tegal, Indonesia",
-    "organizer": "Rohingun",
-    "anticipated": "36",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15821491",
-    "format": "Campus Connect",
-    "country": "Indonesia",
-    "us": false,
-    "modified": "2026-08-25",
     "test": false
    },
    {
@@ -26212,22 +26180,6 @@
     "test": false
    },
    {
-    "id": 15790931,
-    "slug": "wcpt-interview-sched",
-    "stage": "Interview Scheduled",
-    "title": "WordCamp Kolkata, West Bengal, India",
-    "start": null,
-    "location": "Kolkata, West Bengal, India",
-    "organizer": "Ritika Roy",
-    "anticipated": "400",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15790931",
-    "format": "WordCamp",
-    "country": "India",
-    "us": false,
-    "modified": "2026-09-02",
-    "test": false
-   },
-   {
     "id": 14965118,
     "slug": "wcpt-interview-sched",
     "stage": "Interview Scheduled",
@@ -26257,6 +26209,22 @@
     "country": "Uganda",
     "us": false,
     "modified": "2026-05-13",
+    "test": false
+   },
+   {
+    "id": 16013581,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordPress Campus Connect Southeast University, Dhaka",
+    "start": "2026-09-24",
+    "location": "Dhaka, Bangladesh",
+    "organizer": "Muhibul Haque",
+    "anticipated": "90",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16013581",
+    "format": "Campus Connect",
+    "country": "Bangladesh",
+    "us": false,
+    "modified": "2026-09-07",
     "test": false
    },
    {
@@ -26292,35 +26260,51 @@
     "test": false
    },
    {
-    "id": 15869620,
+    "id": 15897861,
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
-    "title": "WordCamp Manchester 2026",
+    "title": "WordPress Campus Connect Oriental College of Technology, Bhopal",
     "start": null,
-    "location": "Manchester, UK",
-    "organizer": "Rhys Wynne",
-    "anticipated": "70",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15869620",
-    "format": "WordCamp",
-    "country": "UK",
-    "us": false,
-    "modified": "2026-09-02",
-    "test": false
-   },
-   {
-    "id": 15814531,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Campus Connect St Philomena College (Autonomous) Puttur",
-    "start": "2026-09-11",
-    "location": "Puttur, India",
-    "organizer": "Shodhan P G",
-    "anticipated": "50",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15814531",
+    "location": "Bhopal, India",
+    "organizer": "Vishal Kumar",
+    "anticipated": "140",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15897861",
     "format": "Campus Connect",
     "country": "India",
     "us": false,
-    "modified": "2026-08-25",
+    "modified": "2026-09-07",
+    "test": false
+   },
+   {
+    "id": 15821491,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordPress Campus Connect SMKN 1 Dukuhturi",
+    "start": "2026-10-01",
+    "location": "Tegal, Indonesia",
+    "organizer": "Rohingun",
+    "anticipated": "36",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15821491",
+    "format": "Campus Connect",
+    "country": "Indonesia",
+    "us": false,
+    "modified": "2026-09-08",
+    "test": false
+   },
+   {
+    "id": 15790931,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordCamp Kolkata, West Bengal, India",
+    "start": null,
+    "location": "Kolkata, West Bengal, India",
+    "organizer": "Ritika Roy",
+    "anticipated": "400",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15790931",
+    "format": "WordCamp",
+    "country": "India",
+    "us": false,
+    "modified": "2026-09-04",
     "test": false
    },
    {
@@ -26336,7 +26320,7 @@
     "format": "Other",
     "country": "Uganda",
     "us": false,
-    "modified": "2026-09-03",
+    "modified": "2026-09-04",
     "test": false
    },
    {
@@ -26353,22 +26337,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-21",
-    "test": false
-   },
-   {
-    "id": 15641609,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Campus Connect SMK Bina Insan Mandiri, Jakarta",
-    "start": "2026-10-07",
-    "location": "Jakarta Barat, Indonesia",
-    "organizer": "Rio Burhan",
-    "anticipated": "80",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15641609",
-    "format": "Campus Connect",
-    "country": "Indonesia",
-    "us": false,
-    "modified": "2026-08-26",
     "test": false
    },
    {
@@ -26427,12 +26395,12 @@
     "start": "2026-09-07",
     "location": "Dhaka, Bangladesh",
     "organizer": "ATIKUR RAHMAN",
-    "anticipated": "80",
+    "anticipated": "55",
     "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15406383",
     "format": "Campus Connect",
     "country": "Bangladesh",
     "us": false,
-    "modified": "2026-08-25",
+    "modified": "2026-09-07",
     "test": false
    },
    {
@@ -26644,6 +26612,22 @@
     "test": false
    },
    {
+    "id": 15869620,
+    "slug": "wcpt-pre-planning",
+    "stage": "In Pre-Planning",
+    "title": "WordCamp Manchester 2026",
+    "start": "2026-11-06",
+    "location": "Manchester, UK",
+    "organizer": "Rhys Wynne",
+    "anticipated": "70",
+    "link": "https://central.wordcamp.org/wordcamps/wordcamp-manchester-2026/",
+    "format": "WordCamp",
+    "country": "UK",
+    "us": false,
+    "modified": "2026-09-08",
+    "test": false
+   },
+   {
     "id": 15710097,
     "slug": "wcpt-pre-planning",
     "stage": "In Pre-Planning",
@@ -26656,7 +26640,7 @@
     "format": "WordCamp",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-03",
+    "modified": "2026-09-06",
     "test": false
    },
    {
@@ -26688,7 +26672,7 @@
     "format": "WordCamp",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-04",
+    "modified": "2026-09-07",
     "test": false
    },
    {
@@ -26833,22 +26817,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-06-04",
-    "test": false
-   },
-   {
-    "id": 13878818,
-    "slug": "wcpt-pre-planning",
-    "stage": "In Pre-Planning",
-    "title": "WordPress Campus Connect Universitas Maritim Raja Ali Haji, Tanjung Pinang",
-    "start": "2026-09-21",
-    "location": "Tanjung Pinang, Riau, Indonesia",
-    "organizer": "Adi Pranadipa",
-    "anticipated": "100",
-    "link": "https://central.wordcamp.org/wordcamps/wordpress-campus-connect-universitas-maritim-raja-ali-haji/",
-    "format": "Campus Connect",
-    "country": "Indonesia",
-    "us": false,
-    "modified": "2026-09-03",
     "test": false
    },
    {
@@ -27153,27 +27121,27 @@
    },
    "2026-07": {
     "newApps": 21,
-    "confirmed": 22,
+    "confirmed": 21,
     "closed": 7,
     "cancelled": 2,
     "declined": 3
    },
    "2026-08": {
     "newApps": 25,
-    "confirmed": 27,
-    "closed": 13,
+    "confirmed": 25,
+    "closed": 14,
     "cancelled": 14,
     "declined": 4
    },
    "2026-09": {
-    "newApps": 3,
-    "confirmed": 4,
-    "closed": 0,
+    "newApps": 4,
+    "confirmed": 10,
+    "closed": 2,
     "cancelled": 0,
     "declined": 1
    }
   },
-  "detailAsOf": "2026-09-04",
+  "detailAsOf": "2026-09-08",
   "funnelCounts": {
    "Needs Vetting": 2,
    "Needs Orientation/Interview": 18,
