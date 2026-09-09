@@ -4,7 +4,7 @@
   "meetups": "2026-09-09",
   "events": "2026-09-09",
   "pipelineCounts": "2026-09-09",
-  "pipelineDetail": "2026-09-08"
+  "pipelineDetail": "2026-09-09"
  },
  "meetups": {
   "asOf": "2026-09-09",
@@ -25639,6 +25639,22 @@
   "testCount": 2,
   "records": [
    {
+    "id": 16046944,
+    "slug": "wcpt-needs-vetting",
+    "stage": "Needs Vetting",
+    "title": "WordPress Campus Connect Deen Dayal Upadhyay Gorakhpur University, Sociology Department",
+    "start": "2027-01-09",
+    "location": "GORAKHPUR, UTTAR PRADEH, India",
+    "organizer": "Shristi Jaiswal",
+    "anticipated": "50",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16046944",
+    "format": "Campus Connect",
+    "country": "India",
+    "us": false,
+    "modified": "2026-09-09",
+    "test": false
+   },
+   {
     "id": 15774488,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
@@ -25668,22 +25684,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
-    "test": false
-   },
-   {
-    "id": 15989978,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordPress Campus Connect Trasa CoWorking Space, Tegal",
-    "start": "2026-10-25",
-    "location": "Tegal, Indonesia",
-    "organizer": "Joko Prabowo",
-    "anticipated": "30",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15989978",
-    "format": "Campus Connect",
-    "country": "Indonesia",
-    "us": false,
-    "modified": "2026-09-08",
     "test": false
    },
    {
@@ -26279,6 +26279,22 @@
     "test": false
    },
    {
+    "id": 15989978,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordPress Campus Connect Trasa CoWorking Space, Tegal",
+    "start": "2026-10-25",
+    "location": "Tegal, Indonesia",
+    "organizer": "Joko Prabowo",
+    "anticipated": "30",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15989978",
+    "format": "Campus Connect",
+    "country": "Indonesia",
+    "us": false,
+    "modified": "2026-09-09",
+    "test": false
+   },
+   {
     "id": 15976544,
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
@@ -26331,7 +26347,7 @@
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
     "title": "WordPress Campus Connect SMKN 1 Dukuhturi",
-    "start": "2026-10-01",
+    "start": "2026-10-07",
     "location": "Tegal, Indonesia",
     "organizer": "Rohingun",
     "anticipated": "36",
@@ -26339,7 +26355,7 @@
     "format": "Campus Connect",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-08",
+    "modified": "2026-09-09",
     "test": false
    },
    {
@@ -26443,7 +26459,7 @@
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
     "title": "WordPress Campus Connect Ahmad Education, Dhaka",
-    "start": "2026-09-07",
+    "start": "2026-10-01",
     "location": "Dhaka, Bangladesh",
     "organizer": "ATIKUR RAHMAN",
     "anticipated": "55",
@@ -26451,7 +26467,7 @@
     "format": "Campus Connect",
     "country": "Bangladesh",
     "us": false,
-    "modified": "2026-09-07",
+    "modified": "2026-09-08",
     "test": false
    },
    {
@@ -26580,22 +26596,6 @@
     "country": "Namibia",
     "us": false,
     "modified": "2026-07-08",
-    "test": false
-   },
-   {
-    "id": 14203183,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordPress Student Club St Philomena College, Puttur",
-    "start": null,
-    "location": "",
-    "organizer": "",
-    "anticipated": "",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=14203183",
-    "format": "Student Club",
-    "country": "",
-    "us": false,
-    "modified": "2026-05-21",
     "test": false
    },
    {
@@ -26839,6 +26839,22 @@
     "test": false
    },
    {
+    "id": 14203183,
+    "slug": "wcpt-pre-planning",
+    "stage": "In Pre-Planning",
+    "title": "WordPress Student Club St Philomena College, Puttur",
+    "start": null,
+    "location": "",
+    "organizer": "",
+    "anticipated": "",
+    "link": "https://central.wordcamp.org/wordcamps/wordpress-student-club-st-philomena-college-puttur/",
+    "format": "Student Club",
+    "country": "",
+    "us": false,
+    "modified": "2026-09-09",
+    "test": false
+   },
+   {
     "id": 14175841,
     "slug": "wcpt-pre-planning",
     "stage": "In Pre-Planning",
@@ -26884,6 +26900,22 @@
     "country": "Costa Rica",
     "us": false,
     "modified": "2026-05-21",
+    "test": false
+   },
+   {
+    "id": 13392262,
+    "slug": "wcpt-pre-planning",
+    "stage": "In Pre-Planning",
+    "title": "WordPress Youth Day Nicarargua 2026",
+    "start": "2026-10-10",
+    "location": "Managua, Nicaragua",
+    "organizer": "Lua Salazar",
+    "anticipated": "140",
+    "link": "https://central.wordcamp.org/wordcamps/yout-day-nicaragua/",
+    "format": "Other",
+    "country": "Nicaragua",
+    "us": false,
+    "modified": "2026-09-08",
     "test": false
    },
    {
@@ -27129,7 +27161,7 @@
   ],
   "momentum": {
    "2026-01": {
-    "newApps": 23,
+    "newApps": 24,
     "confirmed": 15,
     "closed": 10,
     "cancelled": 3,
@@ -27172,7 +27204,7 @@
    },
    "2026-07": {
     "newApps": 21,
-    "confirmed": 21,
+    "confirmed": 20,
     "closed": 7,
     "cancelled": 2,
     "declined": 3
@@ -27185,14 +27217,14 @@
     "declined": 4
    },
    "2026-09": {
-    "newApps": 4,
-    "confirmed": 10,
-    "closed": 2,
+    "newApps": 5,
+    "confirmed": 11,
+    "closed": 3,
     "cancelled": 0,
     "declined": 1
    }
   },
-  "detailAsOf": "2026-09-08",
+  "detailAsOf": "2026-09-09",
   "funnelCounts": {
    "Needs Vetting": 3,
    "Needs Orientation/Interview": 17,
