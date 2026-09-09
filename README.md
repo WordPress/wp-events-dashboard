@@ -4,7 +4,7 @@ A management view of the WordPress community events program: meetups, WordCamps,
 
 **This is deliberately *not* a copy of [events.wordpress.org](https://events.wordpress.org).** That site is the public directory of what's on. This dashboard shows the three things a public listing structurally cannot: the **application pipeline** (what's in flight and where it's stuck), the **decay** (dormant groups, the US-at-zero), and the **trend/synthesis** (2018→2026 trajectory, bench renewal).
 
-> 🌐 **Published publicly** via GitHub Pages at **https://marutim.github.io/wp-events-dashboard/**. The dashboard data in this repo has been cleared for public release. Note that live API credentials (`api/meetup_secrets.json`, `api/wccentral_secrets.json`) remain git-ignored and must never be committed.
+> 🌐 **Published publicly** via GitHub Pages at **https://wordpress.github.io/wp-events-dashboard/**. The dashboard data in this repo has been cleared for public release. Note that live API credentials (`api/meetup_secrets.json`, `api/wccentral_secrets.json`) remain git-ignored and must never be committed.
 
 ---
 
@@ -29,7 +29,7 @@ It opens in any browser, works offline, and already contains a data snapshot. Ev
 ### 2. Clone
 
 ```
-git clone git@github.com:marutim/wp-events-dashboard.git
+git clone git@github.com:WordPress/wp-events-dashboard.git
 cd wp-events-dashboard
 ```
 
@@ -69,7 +69,7 @@ Reads `dashboard_data.json` and writes:
 
 ### 7. Publish (GitHub Pages)
 
-The dashboard is served publicly at **https://marutim.github.io/wp-events-dashboard/**. Pages serves `index.html` from the repo root, which is a copy of the latest `events-dashboard.html`. After rebuilding, refresh the published copy:
+The dashboard is served publicly at **https://wordpress.github.io/wp-events-dashboard/**. Pages serves `index.html` from the repo root, which is a copy of the latest `events-dashboard.html`. After rebuilding, refresh the published copy:
 
 ```
 cp events-dashboard.html index.html
