@@ -79,6 +79,8 @@ th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mute
 tr.us td{background:var(--usrow)} td.num{text-align:right;font-variant-numeric:tabular-nums}
 .stage,.fmt{display:inline-block;font-size:11px;padding:2px 7px;border-radius:20px;white-space:nowrap}
 .stage{background:var(--chip)} .fmt{border:1px solid var(--line);color:var(--muted)}
+.funnel-row{cursor:pointer;border-radius:6px;padding:1px 6px;margin:0 -6px;transition:background .12s}
+.funnel-row:hover{background:var(--chip)}
 .usdot{color:var(--red);font-weight:700} a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 .foot{color:var(--muted);font-size:12px;margin-top:10px}
 .src{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:12px;color:var(--muted)}
@@ -482,7 +484,7 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
  const P=D.pipeline, order=P.funnelOrder;
  const counts=P.funnelCounts||(function(){const c={};order.forEach(s=>c[s]=0);P.records.forEach(r=>{if(c[r.stage]!==undefined)c[r.stage]++});return c;})();
  const mx=Math.max(...Object.values(counts),1);
- let fh=order.map(s=>barRow(s,[['b-blue',counts[s]]],counts[s],mx)).join('');
+ let fh=order.map(s=>`<div class="funnel-row" data-stage="${s}" title="See these events in the outreach list below ↓">${barRow(s,[['b-blue',counts[s]]],counts[s],mx)}</div>`).join('');
  fh+=barRow('→ Scheduled',[['b-green',P.scheduledCount]],P.scheduledCount,mx);
  const usN=P.records.filter(r=>r.us).length, wcN=P.records.filter(r=>r.format==='WordCamp').length;
  const esc=x=>String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -586,6 +588,11 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
  $('usbtn').onclick=e=>{st.us=!st.us;e.target.classList.toggle('on',st.us);apply();};
  document.querySelectorAll('#pipeline th[data-k]').forEach(th=>th.onclick=()=>{const k=th.dataset.k;st.dir=(st.sort===k)?-st.dir:1;st.sort=k;apply();});
  render();
+ /* Funnel bars are shortcuts into the outreach list: pick the stage + scroll down */
+ document.querySelectorAll('#pipeline .funnel-row').forEach(el=>el.onclick=()=>{
+   const s=el.dataset.stage; st.stg=s; $('stg').value=s; apply();
+   const card=$('tb').closest('.card'); if(card) card.scrollIntoView({behavior:'smooth',block:'start'});
+ });
 })();
 
 const _dts=D.dates||{}, _U=iso=>fmtD(iso)||'—';
