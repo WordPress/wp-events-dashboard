@@ -4,7 +4,7 @@
   "meetups": "2026-09-10",
   "events": "2026-09-10",
   "pipelineCounts": "2026-09-10",
-  "pipelineDetail": "2026-09-09"
+  "pipelineDetail": "2026-09-10"
  },
  "meetups": {
   "asOf": "2026-09-10",
@@ -25723,19 +25723,35 @@
   "testCount": 2,
   "records": [
    {
-    "id": 16046944,
+    "id": 16059446,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
-    "title": "WordPress Campus Connect Deen Dayal Upadhyay Gorakhpur University, Sociology Department",
-    "start": "2027-01-09",
-    "location": "GORAKHPUR, UTTAR PRADEH, India",
-    "organizer": "Shristi Jaiswal",
-    "anticipated": "50",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16046944",
+    "title": "WordPress Campus Connect Liceo la Paz A Coruña",
+    "start": "2026-11-30",
+    "location": "A Coruña, Spain",
+    "organizer": "Carla Pumutxa",
+    "anticipated": "45",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16059446",
+    "format": "Campus Connect",
+    "country": "Spain",
+    "us": false,
+    "modified": "2026-09-10",
+    "test": false
+   },
+   {
+    "id": 16058981,
+    "slug": "wcpt-needs-vetting",
+    "stage": "Needs Vetting",
+    "title": "WordPress Campus Connect Manu",
+    "start": "2002-02-20",
+    "location": "Atani, India",
+    "organizer": "Manu Talavar",
+    "anticipated": "608",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16058981",
     "format": "Campus Connect",
     "country": "India",
     "us": false,
-    "modified": "2026-09-09",
+    "modified": "2026-09-10",
     "test": false
    },
    {
@@ -25768,22 +25784,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
-    "test": false
-   },
-   {
-    "id": 15960797,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordPress Campus Connect Titu Maiorescu University, Bucharest",
-    "start": "2026-10-14",
-    "location": "Bucharest, Romania",
-    "organizer": "Alex Spataru",
-    "anticipated": "20",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15960797",
-    "format": "Campus Connect",
-    "country": "Romania",
-    "us": false,
-    "modified": "2026-09-01",
     "test": false
    },
    {
@@ -25899,22 +25899,6 @@
     "test": false
    },
    {
-    "id": 14724230,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordPress Campus Connect MMU, Melaka",
-    "start": "2026-08-24",
-    "location": "Melaka, Malaysia",
-    "organizer": "TEO YU XUAN",
-    "anticipated": "40",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=14724230",
-    "format": "Campus Connect",
-    "country": "Malaysia",
-    "us": false,
-    "modified": "2026-08-05",
-    "test": false
-   },
-   {
     "id": 14679251,
     "slug": "wcpt-needs-orientati",
     "stage": "Needs Orientation/Interview",
@@ -26024,6 +26008,38 @@
     "country": "India",
     "us": false,
     "modified": "2026-01-19",
+    "test": false
+   },
+   {
+    "id": 16046944,
+    "slug": "wcpt-more-info-reque",
+    "stage": "On Hold (more info)",
+    "title": "WordPress Campus Connect Deen Dayal Upadhyay Gorakhpur University",
+    "start": "2027-01-09",
+    "location": "GORAKHPUR, UTTAR PRADEH, India",
+    "organizer": "Shristi Jaiswal",
+    "anticipated": "50",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16046944",
+    "format": "Campus Connect",
+    "country": "India",
+    "us": false,
+    "modified": "2026-09-09",
+    "test": false
+   },
+   {
+    "id": 15960797,
+    "slug": "wcpt-more-info-reque",
+    "stage": "On Hold (more info)",
+    "title": "WordPress Campus Connect Titu Maiorescu University, Bucharest",
+    "start": "2026-10-14",
+    "location": "Bucharest, Romania",
+    "organizer": "Alex Spataru",
+    "anticipated": "20",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15960797",
+    "format": "Campus Connect",
+    "country": "Romania",
+    "us": false,
+    "modified": "2026-09-09",
     "test": false
    },
    {
@@ -26439,23 +26455,7 @@
     "format": "Campus Connect",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-09",
-    "test": false
-   },
-   {
-    "id": 15790931,
-    "slug": "wcpt-approved-pre-pl",
-    "stage": "Approved for Pre-Planning",
-    "title": "WordCamp Kolkata, West Bengal, India",
-    "start": null,
-    "location": "Kolkata, West Bengal, India",
-    "organizer": "Ritika Roy",
-    "anticipated": "400",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15790931",
-    "format": "WordCamp",
-    "country": "India",
-    "us": false,
-    "modified": "2026-09-04",
+    "modified": "2026-09-10",
     "test": false
    },
    {
@@ -26635,6 +26635,22 @@
     "test": false
    },
    {
+    "id": 14724230,
+    "slug": "wcpt-approved-pre-pl",
+    "stage": "Approved for Pre-Planning",
+    "title": "WordPress Campus Connect MMU, Melaka",
+    "start": "2026-11-28",
+    "location": "Melaka, Malaysia",
+    "organizer": "TEO YU XUAN",
+    "anticipated": "40",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=14724230",
+    "format": "Campus Connect",
+    "country": "Malaysia",
+    "us": false,
+    "modified": "2026-09-10",
+    "test": false
+   },
+   {
     "id": 14692221,
     "slug": "wcpt-approved-pre-pl",
     "stage": "Approved for Pre-Planning",
@@ -26754,12 +26770,12 @@
     "start": "2026-11-06",
     "location": "Manchester, UK",
     "organizer": "Rhys Wynne",
-    "anticipated": "70",
+    "anticipated": "100",
     "link": "https://central.wordcamp.org/wordcamps/wordcamp-manchester-2026/",
     "format": "WordCamp",
     "country": "UK",
     "us": false,
-    "modified": "2026-09-08",
+    "modified": "2026-09-09",
     "test": false
    },
    {
@@ -26807,7 +26823,7 @@
     "format": "WordCamp",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-07",
+    "modified": "2026-09-09",
     "test": false
    },
    {
@@ -27179,22 +27195,6 @@
     "test": false
    },
    {
-    "id": 14274426,
-    "slug": "wcpt-needs-contract",
-    "stage": "Needs Contract",
-    "title": "WordCamp Mumbai 2027",
-    "start": null,
-    "location": "Mumbai, Maharashtra, India",
-    "organizer": "Arundhati Kane",
-    "anticipated": "425",
-    "link": "https://central.wordcamp.org/wordcamps/wordcamp-mumbai-2027/",
-    "format": "WordCamp",
-    "country": "India",
-    "us": false,
-    "modified": "2026-09-01",
-    "test": false
-   },
-   {
     "id": 11765528,
     "slug": "wcpt-needs-contract",
     "stage": "Needs Contract",
@@ -27294,21 +27294,21 @@
     "declined": 3
    },
    "2026-08": {
-    "newApps": 25,
-    "confirmed": 25,
+    "newApps": 24,
+    "confirmed": 23,
     "closed": 14,
     "cancelled": 14,
     "declined": 4
    },
    "2026-09": {
-    "newApps": 5,
-    "confirmed": 11,
+    "newApps": 7,
+    "confirmed": 14,
     "closed": 3,
     "cancelled": 0,
     "declined": 1
    }
   },
-  "detailAsOf": "2026-09-09",
+  "detailAsOf": "2026-09-10",
   "funnelCounts": {
    "Needs Vetting": 3,
    "Needs Orientation/Interview": 16,
