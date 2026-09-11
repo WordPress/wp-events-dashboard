@@ -4,7 +4,7 @@
   "meetups": "2026-09-11",
   "events": "2026-09-11",
   "pipelineCounts": "2026-09-11",
-  "pipelineDetail": "2026-09-10"
+  "pipelineDetail": "2026-09-11"
  },
  "meetups": {
   "asOf": "2026-09-11",
@@ -25800,22 +25800,6 @@
     "test": false
    },
    {
-    "id": 16058981,
-    "slug": "wcpt-needs-vetting",
-    "stage": "Needs Vetting",
-    "title": "WordPress Campus Connect Manu",
-    "start": "2002-02-20",
-    "location": "Atani, India",
-    "organizer": "Manu Talavar",
-    "anticipated": "608",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16058981",
-    "format": "Campus Connect",
-    "country": "India",
-    "us": false,
-    "modified": "2026-09-10",
-    "test": false
-   },
-   {
     "id": 15774488,
     "slug": "wcpt-needs-vetting",
     "stage": "Needs Vetting",
@@ -25845,6 +25829,22 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
+    "test": false
+   },
+   {
+    "id": 16046944,
+    "slug": "wcpt-needs-orientati",
+    "stage": "Needs Orientation/Interview",
+    "title": "WordPress Campus Connect Deen Dayal Upadhyay Gorakhpur University",
+    "start": "2027-01-09",
+    "location": "GORAKHPUR, UTTAR PRADEH, India",
+    "organizer": "Shristi Jaiswal",
+    "anticipated": "50",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16046944",
+    "format": "Campus Connect",
+    "country": "India",
+    "us": false,
+    "modified": "2026-09-10",
     "test": false
    },
    {
@@ -25893,22 +25893,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-08-13",
-    "test": false
-   },
-   {
-    "id": 15295737,
-    "slug": "wcpt-needs-orientati",
-    "stage": "Needs Orientation/Interview",
-    "title": "WordCamp WordCamp Deutschland",
-    "start": null,
-    "location": "WordCamp Deutschland",
-    "organizer": "Robert Windisch",
-    "anticipated": "180",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15295737",
-    "format": "WordCamp",
-    "country": "WordCamp Deutschland",
-    "us": false,
-    "modified": "2026-07-08",
     "test": false
    },
    {
@@ -26069,22 +26053,6 @@
     "country": "India",
     "us": false,
     "modified": "2026-01-19",
-    "test": false
-   },
-   {
-    "id": 16046944,
-    "slug": "wcpt-more-info-reque",
-    "stage": "On Hold (more info)",
-    "title": "WordPress Campus Connect Deen Dayal Upadhyay Gorakhpur University",
-    "start": "2027-01-09",
-    "location": "GORAKHPUR, UTTAR PRADEH, India",
-    "organizer": "Shristi Jaiswal",
-    "anticipated": "50",
-    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=16046944",
-    "format": "Campus Connect",
-    "country": "India",
-    "us": false,
-    "modified": "2026-09-09",
     "test": false
    },
    {
@@ -26392,6 +26360,22 @@
     "test": false
    },
    {
+    "id": 15295737,
+    "slug": "wcpt-interview-sched",
+    "stage": "Interview Scheduled",
+    "title": "WordCamp WordCamp Deutschland",
+    "start": null,
+    "location": "WordCamp Deutschland",
+    "organizer": "Robert Windisch",
+    "anticipated": "180",
+    "link": "https://central.wordcamp.org/?post_type=wordcamp&p=15295737",
+    "format": "WordCamp",
+    "country": "WordCamp Deutschland",
+    "us": false,
+    "modified": "2026-09-11",
+    "test": false
+   },
+   {
     "id": 14965118,
     "slug": "wcpt-interview-sched",
     "stage": "Interview Scheduled",
@@ -26452,7 +26436,7 @@
     "format": "Campus Connect",
     "country": "Indonesia",
     "us": false,
-    "modified": "2026-09-09",
+    "modified": "2026-09-11",
     "test": false
    },
    {
@@ -26468,7 +26452,7 @@
     "format": "Campus Connect",
     "country": "India",
     "us": false,
-    "modified": "2026-09-03",
+    "modified": "2026-09-11",
     "test": false
    },
    {
@@ -27356,20 +27340,20 @@
    },
    "2026-08": {
     "newApps": 24,
-    "confirmed": 23,
+    "confirmed": 21,
     "closed": 14,
     "cancelled": 14,
     "declined": 4
    },
    "2026-09": {
     "newApps": 7,
-    "confirmed": 14,
+    "confirmed": 16,
     "closed": 3,
     "cancelled": 0,
-    "declined": 1
+    "declined": 2
    }
   },
-  "detailAsOf": "2026-09-10",
+  "detailAsOf": "2026-09-11",
   "funnelCounts": {
    "Needs Vetting": 3,
    "Needs Orientation/Interview": 16,
