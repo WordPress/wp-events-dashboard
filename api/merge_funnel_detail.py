@@ -19,6 +19,11 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 DASH = os.path.join(HERE, "..", "dashboard_data.json")
 
+# Same list as assemble.py's PUBLIC_RECORD_FIELDS. Keep them in step.
+PUBLIC_RECORD_FIELDS = ("id", "slug", "stage", "title", "start", "location",
+                        "anticipated", "link", "format", "country", "us",
+                        "modified", "test")
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python3 api/merge_funnel_detail.py funnel_detail.json"); sys.exit(1)
@@ -33,7 +38,13 @@ def main():
 
     d = json.load(open(DASH))
     p = d.setdefault("pipeline", {})
-    live = [r for r in incoming if not r.get("test")]
+    # Keep only fields that are safe to publish. These records are applications
+    # Central keeps private (vetting, orientation, on hold...), and everything in
+    # dashboard_data.json is embedded into the public index.html whether or not
+    # the page displays it. An allowlist, so a new field in an older or newer
+    # copy of pull_funnel_detail.js (e.g. an organizer name) never ships by default.
+    live = [{k: r[k] for k in PUBLIC_RECORD_FIELDS if k in r}
+            for r in incoming if not r.get("test")]
     tests = sum(1 for r in incoming if r.get("test"))
 
     # --- Preserve last-change dates ('modified') across merges. -----------------

@@ -310,6 +310,18 @@ def latest_pipeline_snapshot():
     snaps = sorted([h for h in hist if h.get("pipeline")], key=lambda h: h.get("date",""))
     return (snaps[-1]["date"], snaps[-1]["pipeline"]) if snaps else None
 
+# Pipeline records are applications Central keeps private, and the whole of
+# dashboard_data.json is embedded into the public index.html. Only these fields
+# are carried forward, so anything else (an organizer name from an older merge)
+# is dropped on the next nightly run instead of being republished forever.
+# Same list as api/merge_funnel_detail.py. Keep them in step.
+PUBLIC_RECORD_FIELDS = ("id", "slug", "stage", "title", "start", "location",
+                        "anticipated", "link", "format", "country", "us",
+                        "modified", "test")
+
+def public_records(recs):
+    return [{k: r[k] for k in PUBLIC_RECORD_FIELDS if k in r} for r in recs or []]
+
 def build_pipeline(existing):
     ep = existing.get("pipeline") or {}
     snap = latest_pipeline_snapshot()
@@ -317,7 +329,7 @@ def build_pipeline(existing):
     out = {
         "funnelOrder": order,
         "testCount": ep.get("testCount", 0),
-        "records": ep.get("records", []),          # carry-over (browser-only)
+        "records": public_records(ep.get("records")),  # carry-over (browser-only), allowlisted
         "momentum": ep.get("momentum", {}),        # carry-over (browser-only)
         "detailAsOf": ep.get("asOf") or ep.get("detailAsOf"),
     }
