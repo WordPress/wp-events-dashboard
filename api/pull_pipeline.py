@@ -68,7 +68,7 @@ TERMINAL = [("wcpt-rejected", "Declined"), ("wcpt-cancelled", "Cancelled")]
 READABLE_DETAIL = {"wcpt-scheduled", "wcpt-closed", "wcpt-cancelled", "wcpt-rejected"}
 
 DETAIL_FIELDS = ["id", "status", "title", "link", "Start Date (YYYY-mm-dd)",
-                 "End Date (YYYY-mm-dd)", "Location", "Organizer Name",
+                 "End Date (YYYY-mm-dd)", "Location",
                  "Number of Anticipated Attendees", "URL"]
 
 def die(m): print("ERROR:", m); sys.exit(1)
@@ -129,7 +129,6 @@ def clean(r):
         "title": (r.get("title") or {}).get("rendered", ""),
         "start": ts_to_date(r.get("Start Date (YYYY-mm-dd)")),
         "location": r.get("Location") or "",
-        "organizer": r.get("Organizer Name") or "",
         "anticipated": r.get("Number of Anticipated Attendees") or "",
         "link": r.get("link") or "",
     }
