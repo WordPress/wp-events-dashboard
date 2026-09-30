@@ -14,12 +14,13 @@ A GitHub Action (`.github/workflows/refresh.yml`) runs **every night at 03:13 UT
 
 1. Pulls the Meetup network (`api/pull_meetup.py`).
 2. Pulls the WordCamp application **counts** per stage from Central (`api/pull_pipeline.py --funnel`).
-3. Merges everything into `dashboard_data.json` (`assemble.py`), including a live read of Central's public events feed.
-4. Rebuilds the page (`build_dashboard.py`), copies it to `index.html`, and commits if anything changed. GitHub Pages redeploys on that commit.
+3. Reads Central's public **WordCamp Status report** for this year's monthly flow (`api/pull_status_report.py`). No credential needed.
+4. Merges everything into `dashboard_data.json` (`assemble.py`), including a live read of Central's public events feed.
+5. Rebuilds the page (`build_dashboard.py`), copies it to `index.html`, and commits if anything changed. GitHub Pages redeploys on that commit.
 
 Credentials live only in the repo's **Settings → Secrets and variables → Actions**. Each pull step is skipped if its secret is missing, and the dashboard keeps the last data.
 
-**What still needs a person:** the Pipeline tab's event-by-event list and its monthly momentum chart. The nightly job's Application Password can count applications in each stage but can't read them, so that detail comes from a manual pull in a logged-in Central session (step 5 below). Until someone runs it, `assemble.py` carries the last pull forward. The page footer shows the date of each source, and marks the pipeline detail "(manual)" when it's older than the counts.
+**What still needs a person:** the Pipeline tab's event-by-event list. The nightly job's Application Password can count applications in each stage but can't read them, so that list comes from a manual pull in a logged-in Central session (step 5 below). The monthly momentum chart used to come from the same pull; it now updates nightly from the public status report. Until someone runs it, `assemble.py` carries the last pull forward. The page footer shows the date of each source, and marks the pipeline detail "(manual)" when it's older than the counts.
 
 The bench-renewal numbers on the Events & WordCamps tab come from Central's Counts report, which no script reads yet, so they stay at their last manual value.
 
@@ -68,20 +69,21 @@ Then edit each:
 python3 api/pull_meetup.py     # -> data.js + history.json   (needs meetup_secrets.json)
 python3 api/pull_events.py     # -> event counts             (no auth)
 python3 api/pull_pipeline.py --funnel   # -> funnel counts into history.json (needs wccentral_secrets.json)
+python3 api/pull_status_report.py       # -> status_report.json, this year's momentum (no auth)
 ```
 
 The nightly job runs `pull_meetup.py` and `pull_pipeline.py --funnel`. `pull_events.py` isn't needed for the dashboard itself, since `assemble.py` reads Central's public events feed directly.
 
 ### 5. The one manual step: pipeline detail + momentum
 
-The active-funnel **record detail** (which specific ~100 events are in flight) and the monthly **momentum** counts can't be read with the Application Password, so they come from a **logged-in Central browser session**, using an account that can edit WordCamp posts:
+The active-funnel **record detail** (which specific ~100 events are in flight) can't be read with the Application Password, so it comes from a **logged-in Central browser session**, using an account that can edit WordCamp posts:
 
 1. Log in to https://central.wordcamp.org and open any wp-admin page.
 2. Open the browser console, paste the whole of `api/pull_funnel_detail.js`, and press Enter. It downloads `funnel_detail.json`.
 3. Move that file into the repo root and run `python3 api/merge_funnel_detail.py funnel_detail.json`.
 4. Commit `dashboard_data.json` and push. The next nightly run (or a manual run of the Action) rebuilds the page.
 
-`merge_funnel_detail.py` keeps only fields that are safe to publish, so no organizer names end up in the public data. Weekly at most is plenty.
+`merge_funnel_detail.py` keeps only fields that are safe to publish, so no organizer names end up in the public data. The snippet also produces momentum counts, but the next nightly run replaces them with the status report's. Weekly at most is plenty.
 
 ### 6. Assemble and build
 
@@ -104,7 +106,7 @@ In the repo, **Settings → Pages → Build and deployment → Deploy from a bra
 
 ## How the data is wired
 
-`dashboard_data.json` is the single input `build_dashboard.py` renders. `assemble.py` builds it every night from the Meetup pull (`data.js`), the pipeline counts (`history.json`) and a live read of Central's public events feed. A few pieces it can't recompute are carried over from the previous `dashboard_data.json`: the SVG map land outline, the bench-renewal numbers, and the manually pulled pipeline detail and momentum. The top-level `dates` object records when each source was last refreshed, and the page footer shows it.
+`dashboard_data.json` is the single input `build_dashboard.py` renders. `assemble.py` builds it every night from the Meetup pull (`data.js`), the pipeline counts (`history.json`), the momentum from the status report (`status_report.json`) and a live read of Central's public events feed. A few pieces it can't recompute are carried over from the previous `dashboard_data.json`: the SVG map land outline, the bench-renewal numbers, and the manually pulled pipeline detail. The top-level `dates` object records when each source was last refreshed, and the page footer shows it.
 
 ## The four tabs
 
@@ -125,6 +127,6 @@ For a point-in-time report (like a midpoint post), **freeze a dated snapshot** a
 
 ## Open tasks for whoever adopts this
 
-1. Remove the manual browser pull (step 5) so the pipeline detail and momentum refresh nightly too.
+1. Remove the manual browser pull (step 5) so the event-by-event pipeline list refreshes nightly too. The public status report can't carry it: not every status change is logged there, so about a quarter of the list would show the wrong stage.
 2. Read the bench-renewal numbers from a source a script can reach, or label them as a dated snapshot on the page.
 3. Add GatherPress (events.wordpress.org) as a fourth feed when it goes live; the data model is source-agnostic.

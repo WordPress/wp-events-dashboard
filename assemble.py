@@ -6,11 +6,12 @@ Inputs it reads:
   data.js          -> meetups (produced by api/pull_meetup.py)
   history.json     -> latest pipeline funnel counts (banked by api/pull_pipeline.py)
   WordCamp Central public REST (live fetch) -> events section
+  status_report.json -> pipeline.momentum (from api/pull_status_report.py, Central's public
+                       WordCamp Status report); falls back to carry-over if missing or stale
   dashboard_data.json (existing) -> CARRY-OVER of pieces we cannot recompute:
        - meetups.map.land         (baked SVG world outline)
        - events.bench             (from Central's Counts report, not in the public API)
        - pipeline.records         (per-event funnel detail, browser-session only)
-       - pipeline.momentum        (status-change log, browser-session only)
        - pipeline.funnelOrder / testCount
 
 Output: dashboard_data.json  (then run build_dashboard.py)
@@ -28,6 +29,7 @@ DATA_JS   = os.path.join(HERE, "data.js")
 HISTORY   = os.path.join(HERE, "history.json")
 DASH      = os.path.join(HERE, "dashboard_data.json")
 BASELINE  = os.path.join(HERE, "reactivation_baseline.json")
+STATUS    = os.path.join(HERE, "status_report.json")
 TODAY     = datetime.date.today()
 W, H      = 1000, 500
 
@@ -287,8 +289,16 @@ def build_events(existing):
         eventList.append({"n": e["title"], "loc": e["loc"], "d": e["d"].isoformat(),
                           "ty": ev_typelabel(e["title"], e["code"]), "u": e["link"]})
 
+    # Events that happened, by the month they started. Feeds the "happened" total
+    # under the momentum chart, the same basis the manual browser pull used.
+    closed = defaultdict(int)
+    for e in dated:
+        if e["st"] == "wcpt-closed" and e["d"] and e["d"].year == TODAY.year and "test" not in e["title"].lower():
+            closed[e["d"].strftime("%Y-%m")] += 1
+
     bench = (existing.get("events") or {}).get("bench")
     return {
+        "closedByMonth": dict(closed),
         "asOf": TODAY.isoformat(),
         "ytd": len(ytd), "ytdPrev": len(prev_ytd), "calendar": len(y26),
         "byYear": byYear, "formats": formats, "byCountry": byCountry,
@@ -322,6 +332,28 @@ PUBLIC_RECORD_FIELDS = ("id", "slug", "stage", "title", "start", "location",
 def public_records(recs):
     return [{k: r[k] for k in PUBLIC_RECORD_FIELDS if k in r} for r in recs or []]
 
+def build_momentum(existing_momentum, closed_by_month):
+    """Monthly flow for the momentum chart, from Central's public status report.
+
+    Returns (momentum, as_of). Uses status_report.json only if it was written today,
+    so a failed pull can't pass off yesterday's file as fresh; otherwise keeps the
+    previous momentum and its date.
+    """
+    try:
+        rep = json.load(open(STATUS))
+    except Exception:
+        rep = None
+    if not rep or rep.get("asOf") != TODAY.isoformat() or not rep.get("momentum"):
+        return existing_momentum, None
+    months = set(rep["momentum"]) | set(closed_by_month)
+    out = {}
+    for m in sorted(months):
+        row = {"newApps": 0, "confirmed": 0, "cancelled": 0, "declined": 0}
+        row.update(rep["momentum"].get(m, {}))
+        row["closed"] = closed_by_month.get(m, 0)
+        out[m] = row
+    return out, rep["asOf"]
+
 def build_pipeline(existing):
     ep = existing.get("pipeline") or {}
     snap = latest_pipeline_snapshot()
@@ -330,7 +362,7 @@ def build_pipeline(existing):
         "funnelOrder": order,
         "testCount": ep.get("testCount", 0),
         "records": public_records(ep.get("records")),  # carry-over (browser-only), allowlisted
-        "momentum": ep.get("momentum", {}),        # carry-over (browser-only)
+        "momentum": ep.get("momentum", {}),        # replaced in main() from status_report.json
         "detailAsOf": ep.get("asOf") or ep.get("detailAsOf"),
     }
     if snap:
@@ -364,10 +396,19 @@ def main():
         print(f"  events  : {events['ytd']} YTD / {events['calendar']} on 2026 calendar, {len(events['map']['points'])} mapped (as of {e_date})")
     pipeline, pc_date, pd_date = build_pipeline(existing)
     print(f"  pipeline: {pipeline['activeFunnelTotal']} in funnel (counts as of {pc_date}); detail carried over as of {pd_date}")
+    closed = (events or {}).get("closedByMonth", {})
+    momentum, mo_date = build_momentum(pipeline["momentum"], closed)
+    if mo_date:
+        pipeline["momentum"] = momentum
+        print(f"  momentum: {len(momentum)} months from the public status report (as of {mo_date})")
+    else:
+        mo_date = (existing.get("dates") or {}).get("momentum") or pd_date
+        print(f"  momentum: status_report.json missing or stale, kept previous (as of {mo_date})")
 
     out = {
         "asOf": TODAY.isoformat(),
-        "dates": {"meetups": m_date, "events": e_date, "pipelineCounts": pc_date, "pipelineDetail": pd_date},
+        "dates": {"meetups": m_date, "events": e_date, "pipelineCounts": pc_date,
+                  "pipelineDetail": pd_date, "momentum": mo_date},
         "meetups": meetups, "events": events, "pipeline": pipeline,
     }
     json.dump(out, open(DASH, "w"), ensure_ascii=False, indent=1)

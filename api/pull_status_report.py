@@ -13,8 +13,12 @@ Password the nightly job uses can count pre-public applications but not read
 them. This report is public, so it can run in GitHub Actions with no secret.
 
 Usage:
-  python3 api/pull_status_report.py            # write status_report.json
-  python3 api/pull_status_report.py --check    # also compare with dashboard_data.json
+  python3 api/pull_status_report.py            # this year's momentum -> status_report.json
+  python3 api/pull_status_report.py --check    # also read every year and compare with dashboard_data.json
+
+The nightly Action runs the first form, and assemble.py uses its momentum for
+the Pipeline tab's monthly chart. One request, no secret. If it fails, the
+Action carries on and assemble.py keeps the previous momentum.
 
 What it is good for, measured 2026-09-28 against the 2026-09-11 manual pull:
   - newApps per month (the "Application -> Needs Vetting" entry): within 0-4 of
@@ -96,11 +100,17 @@ def parse(page):
                 for d, a, b in ENTRY.findall(log)])
 
 
-def pull(this_year):
+def is_test(name):
+    # Same rule as api/pull_funnel_detail.js: titles containing "test" are test posts.
+    return "test" in name.lower()
+
+
+def pull(years):
     camps = defaultdict(set)
-    for year in range(FIRST_YEAR, this_year + 1):
+    for year in years:
         for name, log in parse(fetch(year)):
-            camps[name].update(log)
+            if not is_test(name):
+                camps[name].update(log)
     return {name: sorted(log) for name, log in camps.items() if log}
 
 
@@ -157,18 +167,20 @@ def check(result):
 
 def main():
     today = datetime.date.today()
-    camps = pull(today.year)
+    full = "--check" in sys.argv
+    years = range(FIRST_YEAR, today.year + 1) if full else [today.year]
+    camps = pull(years)
     result = {
         "asOf": today.isoformat(),
         "source": "central.wordcamp.org WordCamp Status report (public)",
         "momentum": momentum(camps, today.year),
-        "camps": current(camps),
     }
+    if full:
+        result["camps"] = current(camps)
     json.dump(result, open(OUT, "w"), ensure_ascii=False, indent=1)
-    in_funnel = sum(1 for c in result["camps"] if c["stage"])
-    print(f"{len(camps)} camps with a status log, {in_funnel} whose latest status is a funnel stage "
-          f"-> {os.path.relpath(OUT)}")
-    if "--check" in sys.argv:
+    print(f"{len(camps)} camps with a {today.year} status change, "
+          f"{len(result['momentum'])} months of momentum -> {os.path.relpath(OUT)}")
+    if full:
         check(result)
 
 

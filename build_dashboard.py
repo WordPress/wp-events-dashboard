@@ -6,7 +6,7 @@ dashboard_data.json is assembled by the pull scripts + the browser pulls:
   - meetups: from data.js (Meetup API)
   - events:  verified WordCamp Central public counts
   - pipeline.funnel/records/scheduled/cancelled: pull_pipeline.py + browser funnel detail
-  - pipeline.momentum: WordCamp Central wordcamp-status report (browser session)
+  - pipeline.momentum: WordCamp Central's public WordCamp Status report (nightly, api/pull_status_report.py)
 
 Run:  python3 build_dashboard.py    ->  writes events-dashboard.html
 """
@@ -552,9 +552,10 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
      return `<div class="mrow"><div class="mo">${nm}</div><div class="mbars">${wbar('b-blue',d.newApps||0)}${wbar('b-green',d.confirmed||0)}${wbar('b-amber',can(d))}${wbar('b-red',dec(d))}</div></div>`;}).join('');
    const T=k=>mos.reduce((a,m)=>a+(P.momentum[m][k]||0),0);
    const Tcan=mos.reduce((a,m)=>a+can(P.momentum[m]),0), Tdec=mos.reduce((a,m)=>a+dec(P.momentum[m]),0);
-   mom=`<div class="card"><h2>Pipeline momentum — 2026 monthly flow</h2>${rows}
+   const moYear=(mos[0]||'').slice(0,4);
+   mom=`<div class="card"><h2>Pipeline momentum — ${moYear} monthly flow</h2>${rows}
      <div class="legend"><span><i class="dot b-blue"></i>new applications</span><span><i class="dot b-green"></i>confirmed (&rarr; scheduled)</span><span><i class="dot b-amber"></i>cancelled</span><span><i class="dot b-red"></i>declined</span></div>
-     <p class="foot">YTD: <b>${T('newApps')}</b> new applications entered the funnel, <b>${T('confirmed')}</b> reached scheduled, <b>${T('closed')}</b> happened, <b>${Tcan}</b> cancelled, <b>${Tdec}</b> declined.</p></div>`;
+     <p class="foot">YTD: <b>${T('newApps')}</b> new applications entered the funnel, <b>${T('confirmed')}</b> reached scheduled, <b>${T('closed')}</b> happened, <b>${Tcan}</b> cancelled, <b>${Tdec}</b> declined. Updated nightly from Central's public WordCamp Status report${(D.dates||{}).momentum?' (as of '+fmtD(D.dates.momentum)+')':''}.</p></div>`;
  }
 
  $('pipeline').innerHTML=
