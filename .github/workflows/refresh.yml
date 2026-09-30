@@ -60,6 +60,11 @@ jobs:
             echo "WordCamp Central secrets not set — skipping pipeline pull (dashboard keeps last counts)."
           fi
 
+      - name: Pull WordCamp Status report (public, momentum chart)
+        # No secret needed. If Central is unreachable, assemble.py keeps the previous momentum.
+        continue-on-error: true
+        run: python3 api/pull_status_report.py
+
       - name: Assemble data + build dashboard
         run: |
           python3 assemble.py
