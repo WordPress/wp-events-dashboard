@@ -8,6 +8,23 @@ A management view of the WordPress community events program: meetups, WordCamps,
 
 ---
 
+## How it stays up to date
+
+A GitHub Action (`.github/workflows/refresh.yml`) runs **every night at 03:13 UTC**, and can also be run by hand from the Actions tab. It:
+
+1. Pulls the Meetup network (`api/pull_meetup.py`).
+2. Pulls the WordCamp application **counts** per stage from Central (`api/pull_pipeline.py --funnel`).
+3. Merges everything into `dashboard_data.json` (`assemble.py`), including a live read of Central's public events feed.
+4. Rebuilds the page (`build_dashboard.py`), copies it to `index.html`, and commits if anything changed. GitHub Pages redeploys on that commit.
+
+Credentials live only in the repo's **Settings → Secrets and variables → Actions**. Each pull step is skipped if its secret is missing, and the dashboard keeps the last data.
+
+**What still needs a person:** the Pipeline tab's event-by-event list and its monthly momentum chart. The nightly job's Application Password can count applications in each stage but can't read them, so that detail comes from a manual pull in a logged-in Central session (step 5 below). Until someone runs it, `assemble.py` carries the last pull forward. The page footer shows the date of each source, and marks the pipeline detail "(manual)" when it's older than the counts.
+
+The bench-renewal numbers on the Events & WordCamps tab come from Central's Counts report, which no script reads yet, so they stay at their last manual value.
+
+---
+
 ## Setup
 
 ### 0. Just want to look at it?
@@ -18,7 +35,7 @@ No setup needed. The dashboard is one self-contained file:
 open events-dashboard.html
 ```
 
-It opens in any browser, works offline, and already contains a data snapshot. Everything below is only for **refreshing** that data.
+It opens in any browser, works offline, and already contains a data snapshot. The nightly job keeps the published copy fresh, so everything below is only for **running a refresh yourself**: testing a change locally, or doing the one manual step.
 
 ### 1. Prerequisites
 
@@ -50,31 +67,36 @@ Then edit each:
 ```
 python3 api/pull_meetup.py     # -> data.js + history.json   (needs meetup_secrets.json)
 python3 api/pull_events.py     # -> event counts             (no auth)
-python3 api/pull_pipeline.py   # -> pipeline.json + funnel counts (needs wccentral_secrets.json)
+python3 api/pull_pipeline.py --funnel   # -> funnel counts into history.json (needs wccentral_secrets.json)
 ```
+
+The nightly job runs `pull_meetup.py` and `pull_pipeline.py --funnel`. `pull_events.py` isn't needed for the dashboard itself, since `assemble.py` reads Central's public events feed directly.
 
 ### 5. The one manual step: pipeline detail + momentum
 
-The active-funnel **record detail** (which specific ~100 events are in flight) and the `wordcamp-status` **momentum** log are permission-stripped from the Application Password REST. They must be pulled from a **logged-in Central browser session**: an in-page `fetch` with the session cookie + `X-WP-Nonce` against `/wp-json/wp/v2/wordcamps?status=<slug>&context=edit`, or the `wp-admin/index.php?page=wordcamp-reports` pages. Do this weekly at most. (This is the piece most worth turning into a small helper next.)
+The active-funnel **record detail** (which specific ~100 events are in flight) and the monthly **momentum** counts can't be read with the Application Password, so they come from a **logged-in Central browser session**, using an account that can edit WordCamp posts:
 
-### 6. Build the dashboard
+1. Log in to https://central.wordcamp.org and open any wp-admin page.
+2. Open the browser console, paste the whole of `api/pull_funnel_detail.js`, and press Enter. It downloads `funnel_detail.json`.
+3. Move that file into the repo root and run `python3 api/merge_funnel_detail.py funnel_detail.json`.
+4. Commit `dashboard_data.json` and push. The next nightly run (or a manual run of the Action) rebuilds the page.
+
+`merge_funnel_detail.py` keeps only fields that are safe to publish, so no organizer names end up in the public data. Weekly at most is plenty.
+
+### 6. Assemble and build
 
 ```
-python3 build_dashboard.py
+python3 assemble.py            # merges the feeds into dashboard_data.json
+python3 build_dashboard.py     # renders it
 ```
 
-Reads `dashboard_data.json` and writes:
+`build_dashboard.py` reads `dashboard_data.json` and writes:
 - `events-dashboard.html` — standalone, double-click to open
-- `events-dashboard.artifact.html` — body-only, for publishing as a Claude Artifact
+- `events-dashboard.artifact.html` — body-only variant, originally made for publishing as a Claude Artifact
 
 ### 7. Publish (GitHub Pages)
 
-The dashboard is served publicly at **https://wordpress.github.io/wp-events-dashboard/**. Pages serves `index.html` from the repo root, which is a copy of the latest `events-dashboard.html`. After rebuilding, refresh the published copy:
-
-```
-cp events-dashboard.html index.html
-git add index.html && git commit -m "Update published dashboard" && git push
-```
+The dashboard is served publicly at **https://wordpress.github.io/wp-events-dashboard/**. Pages serves `index.html` from the repo root, which is a copy of the latest `events-dashboard.html`. **The nightly job does this copy and commit for you.** To publish sooner, run the Action by hand from the Actions tab rather than committing a local build, since the bot commits to `main` every night and a hand-built copy can collide with it.
 
 In the repo, **Settings → Pages → Build and deployment → Deploy from a branch → `main` / root** enables hosting.
 
@@ -82,7 +104,7 @@ In the repo, **Settings → Pages → Build and deployment → Deploy from a bra
 
 ## How the data is wired
 
-`dashboard_data.json` is the single input `build_dashboard.py` renders. It is assembled from the three feeds above plus a couple of baked-in pieces (the SVG map land outline, the bench-renewal numbers from WordCamp Central's Counts report). **Honest state of things:** the per-feed pulls are scripted, but reassembling `dashboard_data.json` from them is currently done by hand. The version in the repo is a working frozen snapshot, so `build_dashboard.py` runs out of the box. Writing one `assemble.py` that merges the feeds into `dashboard_data.json` is the top open task for whoever adopts this.
+`dashboard_data.json` is the single input `build_dashboard.py` renders. `assemble.py` builds it every night from the Meetup pull (`data.js`), the pipeline counts (`history.json`) and a live read of Central's public events feed. A few pieces it can't recompute are carried over from the previous `dashboard_data.json`: the SVG map land outline, the bench-renewal numbers, and the manually pulled pipeline detail and momentum. The top-level `dates` object records when each source was last refreshed, and the page footer shows it.
 
 ## The four tabs
 
@@ -103,6 +125,6 @@ For a point-in-time report (like a midpoint post), **freeze a dated snapshot** a
 
 ## Open tasks for whoever adopts this
 
-1. Write `assemble.py` to merge the three feeds into `dashboard_data.json` (removes the last manual step besides the browser pull).
-2. Turn the browser pull (step 5) into a small documented helper.
+1. Remove the manual browser pull (step 5) so the pipeline detail and momentum refresh nightly too.
+2. Read the bench-renewal numbers from a source a script can reach, or label them as a dated snapshot on the page.
 3. Add GatherPress (events.wordpress.org) as a fourth feed when it goes live; the data model is source-agnostic.
