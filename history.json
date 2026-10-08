@@ -2431,5 +2431,40 @@
    "declined": 582,
    "cancelled": 55
   }
+ },
+ {
+  "date": "2026-10-08",
+  "groups": 711,
+  "active": 416,
+  "dormant": 263,
+  "neverHosted": 32,
+  "met90d": 269,
+  "membershipsSum": 572393,
+  "officialMembers": 504785,
+  "officialCountries": 100,
+  "officialEvents": 54808,
+  "events90d": 581,
+  "lowRsvp90": 95,
+  "organizers": 2381,
+  "activeMembers90d": 25964,
+  "pipeline": {
+   "funnel": {
+    "wcpt-needs-vetting": 11,
+    "wcpt-needs-orientati": 16,
+    "wcpt-more-info-reque": 21,
+    "wcpt-interview-sched": 3,
+    "wcpt-approved-pre-pl": 24,
+    "wcpt-pre-planning": 24,
+    "wcpt-needs-budget-re": 0,
+    "wcpt-budget-rev-sche": 0,
+    "wcpt-needs-contract": 2,
+    "wcpt-needs-fill-list": 1,
+    "wcpt-needs-schedule": 0
+   },
+   "activeFunnelTotal": 102,
+   "scheduled": 36,
+   "declined": 582,
+   "cancelled": 55
+  }
  }
 ]
