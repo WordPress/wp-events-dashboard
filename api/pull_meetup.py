@@ -147,6 +147,7 @@ query ($urlname: ID!, $since: DateTime!) {
     organizers: membersSearch(input: { first: 1, filter: { roles: ORGANIZER } }) { totalCount }
     allOrganizers: membersSearch(input: { first: 1, filter: { roles: [ORGANIZER, COORGANIZER, ASST_ORGANIZER, EVENT_ORGANIZER] } }) { totalCount }
     activeMembers90d: membersSearch(input: { first: 1, filter: { activeWithinDays: 90 } }) { totalCount }
+    activeMembers365d: membersSearch(input: { first: 1, filter: { activeWithinDays: 365 } }) { totalCount }
   }
 }
 """
@@ -249,7 +250,8 @@ def append_history(rows, official):
         "membershipsSum": sum(int(r.get("members") or 0) for r in rows),
     }
     for k in ("officialMembers", "officialCountries", "officialEvents",
-              "events90d", "lowRsvp90", "organizers", "activeMembers90d"):
+              "events90d", "lowRsvp90", "organizers", "activeMembers90d",
+              "activeMembers365d"):
         if (official or {}).get(k) is not None:
             snap[k] = official[k]
     try:
@@ -296,18 +298,28 @@ def fetch_network_analytics(token, urlname):
             "organizers": c(pn, "allOrganizers"),
             "primaryOrganizer": c(pn, "organizers"),
             "activeMembers90d": c(pn, "activeMembers90d"),
+            "activeMembers365d": c(pn, "activeMembers365d"),
             "liveAsOf": TODAY.isoformat(),
         }
     except SystemExit:
         return {}
 
+# Fields from the original hand-built data.js that no pull ever refreshes. Carrying
+# them forward stamped today's asOf on months-old numbers, so drop them instead.
+# Live equivalents: officialMembers (not uniqueMembers), organizers (not organizersAllRoles).
+STALE_UNIVERSE_KEYS = ("uniqueMembers", "memberships", "visited90d", "everAttended",
+                       "pastEvents", "online90", "organizersAllRoles")
+
 def write_data_js(rows, official=None):
     prev = existing_universe() or {}
+    dropped = {k: prev.pop(k) for k in STALE_UNIVERSE_KEYS if k in prev}
+    if dropped:
+        print("dropped stale universe fields (never refreshed by any pull):", dropped)
     active = sum(1 for r in rows if r["status"] == "Active")
     dormant = sum(1 for r in rows if r["status"] == "Dormant")
     never = sum(1 for r in rows if r["status"] == "Not started")
     countries = len(set(r["country"] for r in rows if r["country"]))
-    universe = dict(prev)  # keep members/events fields if present
+    universe = dict(prev)
     universe.update({
         "asOf": TODAY.isoformat(), "groups": len(rows), "active": active,
         "dormant": dormant, "neverHosted": never, "countries": countries,
