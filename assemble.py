@@ -172,10 +172,10 @@ def build_meetups(existing):
     return {
         "asOf": uni.get("asOf") or TODAY.isoformat(),
         "groups": len(groups),
-        "members": uni.get("officialMembers") or uni.get("uniqueMembers") or 0,
+        "members": uni.get("officialMembers") or 0,
         "countries": uni.get("officialCountries") or countries,
         "active": active, "dormant": dormant, "never": never,
-        "met90": met90, "organizers": uni.get("organizersAllRoles") or uni.get("organizers") or 0,
+        "met90": met90, "organizers": uni.get("organizers") or 0,
         "recency": recency, "deadBig": deadBig, "toWatch": toWatch, "us": us,
         "map": {"land": land, "points": points, "counts": counts, "w": W, "h": H},
         "monthMap": {"month": month_key, "points": month_points, "count": len(month_met)},
