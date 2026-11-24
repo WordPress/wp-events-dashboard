@@ -249,7 +249,7 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
   +`<div class="card"><h2>All groups by activity</h2>
     <div class="controls" style="margin-bottom:12px"><label style="font-size:13px;color:var(--muted)">Country</label><select id="mgcountry"></select></div>
     <div class="mgtabs" id="mgtabs"></div>
-    <table><thead><tr><th>Group</th><th class="hidem">City</th><th>Country</th><th class="num">Members</th><th>Last met</th></tr></thead><tbody id="mgbody"></tbody></table>
+    <table><thead><tr><th>Group</th><th class="hidem">City</th><th>Country</th><th class="num">Members</th><th>Last met</th><th title="In-person or hybrid meetings. Tracked from Nov 2025.">Last in person</th></tr></thead><tbody id="mgbody"></tbody></table>
     <div class="mgpager" id="mgpager"></div>
     <p class="foot" id="mgfoot"></p></div>`
   +`<div class="card"><h2>United States</h2><p style="margin:0">${m.us.groups} US groups, ${m.us.met90} of them (${Math.round(m.us.met90/m.us.groups*100)}%) met in the last 90 days. A strong meetup base, with fewer larger events built on top.</p></div>`;
@@ -318,13 +318,16 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
    $('mgtabs').innerHTML=CATS.map(c=>`<button class="mgtab${c[0]===curCat?' on':''}" data-c="${c[0]}">${c[1]}<span class="mgn">${rowsFor(c[0]).length}</span></button>`).join('');
    $('mgtabs').querySelectorAll('.mgtab').forEach(b=>b.onclick=()=>{curCat=b.dataset.c;curPage=1;drawTabs();drawTable();});
  }
+ /* In-person column: date of the last in-person/hybrid meeting, plus the past-year count.
+    Older data without the field renders blank rather than 'none'. */
+ const ipCell=g=>g.inPerson365==null&&!g.lastInPerson?'':(g.lastInPerson?fmtD(g.lastInPerson):'<span style="color:var(--muted)">none</span>')+(g.inPerson365?`<br><span style="color:var(--muted);font-size:12px">${g.inPerson365} in the past year</span>`:'');
  function drawTable(){
    const rows=rowsFor(curCat), pages=Math.max(1,Math.ceil(rows.length/PAGE));
    if(curPage>pages)curPage=pages;
    const slice=rows.slice((curPage-1)*PAGE,curPage*PAGE);
-   $('mgbody').innerHTML=slice.length?slice.map(g=>`<tr><td><a href="${esc(g.url)}" class="gname" data-gid="${g.id}" rel="noopener">${esc(g.group)}</a>${dotFor(g.cat)}</td><td class="hidem">${esc(g.city)}</td><td>${esc(g.country)}</td><td class="num">${(g.members||0).toLocaleString()}</td><td>${g.last?fmtD(g.last):'never'}</td></tr>`).join(''):`<tr><td colspan="5" style="color:var(--muted)">No groups in this category.</td></tr>`;
+   $('mgbody').innerHTML=slice.length?slice.map(g=>`<tr><td><a href="${esc(g.url)}" class="gname" data-gid="${g.id}" rel="noopener">${esc(g.group)}</a>${dotFor(g.cat)}</td><td class="hidem">${esc(g.city)}</td><td>${esc(g.country)}</td><td class="num">${(g.members||0).toLocaleString()}</td><td style="white-space:nowrap">${g.last?fmtD(g.last):'never'}</td><td style="white-space:nowrap">${ipCell(g)}</td></tr>`).join(''):`<tr><td colspan="6" style="color:var(--muted)">No groups in this category.</td></tr>`;
    const from=rows.length?(curPage-1)*PAGE+1:0, to=Math.min(curPage*PAGE,rows.length);
-   $('mgfoot').textContent=`Showing ${from}–${to} of ${rows.length} groups.`;
+   $('mgfoot').textContent=`Showing ${from}–${to} of ${rows.length} groups. "Last met" counts online meetings too; "Last in person" counts in-person and hybrid meetings since Nov 2025.`;
    $('mgpager').innerHTML=`<button class="mgpg" data-p="prev"${curPage<=1?' disabled':''}>← Prev</button><span class="mgpginfo">Page ${curPage} / ${pages}</span><button class="mgpg" data-p="next"${curPage>=pages?' disabled':''}>Next →</button>`;
    $('mgpager').querySelectorAll('.mgpg').forEach(b=>b.onclick=()=>{if(b.dataset.p==='prev'&&curPage>1)curPage--;else if(b.dataset.p==='next'&&curPage<pages)curPage++;drawTable();});
  }
