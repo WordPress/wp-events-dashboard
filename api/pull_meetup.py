@@ -6,6 +6,7 @@ tracker (../data.js) + a full CSV (../meetup_groups.csv) in one command.
 Usage:
   python3 pull_meetup.py --raw     # auth check + dump first page of raw JSON (use this FIRST
                                    # to confirm field names, then we lock the mapping)
+  python3 pull_meetup.py --raw-events  # check the past-events (in-person/online) shape
   python3 pull_meetup.py           # full pull -> writes ../meetup_groups.csv and rebuilds ../data.js
 
 Secrets live in meetup_secrets.json (git-ignored). Never paste them into chat.
@@ -152,6 +153,23 @@ query ($urlname: ID!, $since: DateTime!) {
 }
 """
 
+# Past events across the whole network, for the in-person vs online split. groupAnalytics
+# only gives one lastEventDate of any kind, which can't answer "which groups met in
+# person". Meetup's Event has an eventType (ONLINE / PHYSICAL / HYBRID); hybrid counts
+# as in person. Check the shape with `python3 pull_meetup.py --raw-events`.
+EVENTS_WINDOW = 365
+EVENTS_QUERY = """
+query ($urlname: ID!, $since: DateTime!, $cursor: String) {
+  proNetwork(urlname: $urlname) {
+    eventsSearch(input: { first: 200, after: $cursor, filter: { eventDateMin: $since, status: "PAST" } }) {
+      totalCount
+      pageInfo { hasNextPage endCursor }
+      edges { node { dateTime eventType group { urlname } } }
+    }
+  }
+}
+"""
+
 def gql(token, variables, query=None):
     body = json.dumps({"query": query or QUERY, "variables": variables}).encode()
     req = urllib.request.Request(GQL_URL, data=body, headers={
@@ -205,6 +223,72 @@ def node_to_row(n):
         "organizer": "", "reactivation": "—", "url": url,
         "note": ("%d past events · %.0f RSVPs/event" % (pe, rpe)) if pe else ""
     }
+
+def urlname_of(row):
+    """meetup.com/<urlname>/ -> urlname, lowercased, so events and groups join."""
+    u = (row.get("url") or "").split("meetup.com/", 1)
+    return u[1].strip("/").split("/")[0].lower() if len(u) == 2 else ""
+
+def fetch_event_formats(token, urlname):
+    """Per group: last in-person date, last online date, and counts over the window.
+    Returns {} on any failure so the nightly pull never breaks on this."""
+    since = (TODAY - datetime.timedelta(days=EVENTS_WINDOW)).isoformat() + "T00:00:00Z"
+    out, cursor, seen = {}, None, 0
+    try:
+        while True:
+            data = gql(token, {"urlname": urlname, "since": since, "cursor": cursor}, EVENTS_QUERY)
+            es = ((data or {}).get("proNetwork") or {}).get("eventsSearch") or {}
+            for e in es.get("edges") or []:
+                n = e.get("node") or {}
+                g = ((n.get("group") or {}).get("urlname") or "").lower()
+                day = (n.get("dateTime") or "")[:10]
+                kind = (n.get("eventType") or "").upper()
+                if not g or not day or not kind:
+                    continue
+                seen += 1
+                r = out.setdefault(g, {"lastInPerson": "", "lastOnline": "", "inPerson365": 0, "online365": 0})
+                if kind == "ONLINE":
+                    r["online365"] += 1
+                    r["lastOnline"] = max(r["lastOnline"], day)
+                else:  # PHYSICAL or HYBRID
+                    r["inPerson365"] += 1
+                    r["lastInPerson"] = max(r["lastInPerson"], day)
+            pi = es.get("pageInfo") or {}
+            if pi.get("hasNextPage") and pi.get("endCursor"):
+                cursor = pi["endCursor"]
+            else:
+                break
+    except SystemExit:
+        print("WARNING: past-events pull failed; keeping last in-person/online dates.")
+        return {}
+    print("  events: %d past events in %d days across %d groups" % (seen, EVENTS_WINDOW, len(out)))
+    return out
+
+def existing_groups():
+    try:
+        s = open(DATA_JS).read(); i = s.index("groups:"); b = s.index("[", i); d = 0
+        for j in range(b, len(s)):
+            if s[j] == "[": d += 1
+            elif s[j] == "]":
+                d -= 1
+                if d == 0: return json.loads(s[b:j+1])
+    except Exception:
+        return []
+    return []
+
+def merge_event_formats(rows, formats):
+    """Attach the in-person/online fields. Dates older than the window are kept from the
+    previous data.js (never cleared), so a group's last in-person date survives once it
+    falls out of the 365-day pull. Counts are only replaced when the pull succeeded."""
+    prev = {urlname_of(g): g for g in existing_groups() if urlname_of(g)}
+    for r in rows:
+        k = urlname_of(r); p = prev.get(k) or {} if k else {}; f = formats.get(k) or {}
+        r["lastInPerson"] = max(p.get("lastInPerson") or "", f.get("lastInPerson") or "")
+        r["lastOnline"] = max(p.get("lastOnline") or "", f.get("lastOnline") or "")
+        if formats:
+            r["inPerson365"] = f.get("inPerson365", 0); r["online365"] = f.get("online365", 0)
+        else:
+            r["inPerson365"] = p.get("inPerson365"); r["online365"] = p.get("online365")
 
 def fetch_all(token, urlname):
     rows, cursor = [], None
@@ -351,10 +435,16 @@ def main():
         print(json.dumps(data, indent=2)[:6000])
         print("\n--- auth OK. Eyeball the field names above vs node_to_row(), then run without --raw. ---")
         return
+    if "--raw-events" in sys.argv:
+        since = (TODAY - datetime.timedelta(days=30)).isoformat() + "T00:00:00Z"
+        data = gql(token, {"urlname": urlname, "since": since, "cursor": None}, EVENTS_QUERY)
+        print(json.dumps(data, indent=2)[:4000])
+        return
     print("Pulling network:", urlname)
     rows = fetch_all(token, urlname)
     if UNKNOWN_CODES:
         print("NOTE: unmapped country codes (shown as-is, region=Other):", sorted(UNKNOWN_CODES))
+    merge_event_formats(rows, fetch_event_formats(token, urlname))
     official = fetch_network_analytics(token, urlname)
     if official:
         print("Meetup networkAnalytics (authoritative):", official)
