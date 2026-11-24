@@ -318,7 +318,7 @@ function attachBarTip(wrap,tip){if(!wrap||!tip)return;wrap.addEventListener('mou
    const svg=$('wmap'), wrap=$('mapwrap'), tip=$('maptip');
    if(!svg||!wrap||!tip) return;
    const byId={}; (m.allGroups||[]).forEach(g=>byId[g.id]=g);
-   const W=M.w, H=M.h, ASPECT=H/W, MINW=110;
+   const W=M.w, H=M.h, ASPECT=H/W, MINW=27.5;
    let vb={x:0,y:0,w:W,h:H}, pinned=false;
    const clamp=()=>{vb.w=Math.min(W,vb.w);vb.h=vb.w*ASPECT;vb.x=Math.max(0,Math.min(W-vb.w,vb.x));vb.y=Math.max(0,Math.min(H-vb.h,vb.y));};
    const apply=()=>svg.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
