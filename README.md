@@ -8,6 +8,10 @@ A management view of the WordPress community events program: meetups, WordCamps,
 
 ---
 
+## Ask your AI agent instead
+
+The [`skill/`](skill/) folder holds a skill that lets any AI agent answer questions from this data, like which groups met in person lately or which communities held WordCamps in a given range. Start with [`skill/README.md`](skill/README.md).
+
 ## How it stays up to date
 
 A GitHub Action (`.github/workflows/refresh.yml`) runs **every night at 03:13 UTC**, and can also be run by hand from the Actions tab. It:
