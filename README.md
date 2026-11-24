@@ -108,6 +108,8 @@ In the repo, **Settings → Pages → Build and deployment → Deploy from a bra
 
 `dashboard_data.json` is the single input `build_dashboard.py` renders. `assemble.py` builds it every night from the Meetup pull (`data.js`), the pipeline counts (`history.json`), the momentum from the status report (`status_report.json`) and a live read of Central's public events feed. A few pieces it can't recompute are carried over from the previous `dashboard_data.json`: the SVG map land outline, the bench-renewal numbers, and the manually pulled pipeline detail. The top-level `dates` object records when each source was last refreshed, and the page footer shows it.
 
+**In person vs online.** Each group in `meetups.allGroups` carries `lastInPerson` and `lastOnline` (dates), plus `inPerson365` and `online365` (event counts over the last 365 days). They come from a second Meetup query over the network's past events (`eventType`: online, in person, or hybrid; hybrid counts as in person). `last` stays the date of the most recent meeting of any kind. If that query fails, the pull carries the previous values forward and the rest of the refresh still runs. Check the query's shape with `python3 api/pull_meetup.py --raw-events`.
+
 ## The four tabs
 
 - **Overview** — definitions + headline numbers across all three domains.
